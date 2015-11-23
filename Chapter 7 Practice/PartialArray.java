@@ -25,20 +25,41 @@ public class PartialArray
         }
         this.currentSize--;
     }
-    
+
     public void insert( int pos, int value )
     {
         if ( this.currentSize < this.values.length ) 
         {
-            currentSize++;
-            for( int i = currentSize-1;
-            i > pos;
-            i--)
-            {
-                this.values[i] = this.values[i-1];
-                this.values[pos] = 
-            }
-          }
+            this.growArray();
         }
+        currentSize++;
+
+        for( int i = currentSize-1;
+        i > pos;
+        i--)
+        {
+            this.values[i] = this.values[i-1];
+        }
+        this.values[pos] = value;
     }
+
+    public void swap (int posA, int posB)
+    {
+        int temp = this.values[posA];
+        this.values[posA]=this.values[posB];
+        this.values[posB]=temp;
+    }
+
+    private void growArray()
+    {
+        int[] newArray = new int[this.currentSize*2];
+        for( int i=0; i<this.currentSize;i++)
+        {
+            newArray[i] = this.values[i];
+        }
+        
+        this.values = newArray;
+    }
+    
+
 }
