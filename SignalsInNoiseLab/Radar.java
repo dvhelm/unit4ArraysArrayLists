@@ -37,7 +37,18 @@ public class Radar
         
         
         //
+        
+        for (int i = 0;i<rows;i++)
+        {
+                for (int j = 0;j<rows; i++)
+                {
+                    if (currentScan[i][j]==true)
+                    {
+                        accumulator+=accumulator[][]
+                                    }
+        }
         // !!! add code here !!!
+        
         //
         
         
