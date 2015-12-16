@@ -74,6 +74,9 @@ public class Radar
         //
         // !!! add code here !!!
         //
+        
+        // Iterates through all cells and marks them false
+        
         for (int r=0;r<rows;r++)
         {
             for(int c=0;c<cols;c++)
@@ -81,8 +84,17 @@ public class Radar
                 currentScan[r][c]=false;
             }
         }
+        
+        // Marks the moster's location as true
+        
         currentScan[monsterLocationRow][monsterLocationCol]=true;
+        
+        // Implements false positives
+        
         injectNoise();
+        
+        // Takes note of all positives
+        
         for (int r=0;r<rows;r++)
         {
             for(int c=0;c<cols;c++)
@@ -93,6 +105,9 @@ public class Radar
                 }
             }
         }
+        
+        // Increases number of scans
+        
         numScans++;
     }
 
@@ -194,6 +209,58 @@ public class Radar
         //
         // !!! add code here !!!
         //
+        
+        // Decides whether the given location will invoke a false positive
+        for (int r=0; r<rows;r++)
+        {
+            for(int c=0; c<cols;++c)
+            {
+                double chance = Math.random();
+                if (chance<=noiseFraction)
+                {
+                    currentScan[r][c]=true;
+                }
+            }
+        }
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
