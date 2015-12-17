@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +23,7 @@ public class RadarTest
         // initialise instance variables
         x = 0;
     }
-    
+
     /**
      * Sets up the test fixture.
      *
@@ -46,31 +45,88 @@ public class RadarTest
     }
 
     @Test
-    public void testRadar()
+    public void testRadar1()
     {
         // Makes Radar object
         Radar radar = new Radar(100,100);
-        
+
         // Sets monster location at (87,12)
         radar.setMonsterLocation(87,12);
-        
+
         // Invokes scan 99 times
         for (int i=0;i<100;i++)
         {
             radar.scan();
         }
         
-        int highestValue=radar.getAccumulatorDetection[0][0];
-        for (int r=0;i<100;r++)
+        //Initializes necessary variables to operate the algorithm
+        
+        int c=0;
+        int highestValue=0;
+        int highestValueRow=0;
+        int highestValueCol=0;
+        
+        // Scans through all cells to find the most lit up cell
+        
+        for (int r=0;r<100;r++)
         {
-            for (int c=0;c<100;c++)
+            for (c=0;c<100;c++)
             {
-                if (getAccumulatorDetection[r][c]>highestValue)
+                if (radar.getAccumulatedDetection(r,c)>highestValue)
                 {
-                    highestValue=radar.getAccumulator[r][c];
+                    highestValueCol=c;
+                    highestValueRow=r;
+                    highestValue=radar.getAccumulatedDetection(r,c);
                 }
             }
         }
-        //assertEquals(getAccumulatorValue
+
+        // Verifies that the cell found was the intended cell
+        
+        assertEquals(87,highestValueRow);
+        assertEquals(12,highestValueCol);
+
+    }
+    @Test
+    public void testRadar2()
+    {
+        // Makes Radar object
+        Radar radar = new Radar(100,100);
+
+        // Sets monster location at (55,2)
+        radar.setMonsterLocation(55,2);
+
+        // Invokes scan 99 times
+        for (int i=0;i<100;i++)
+        {
+            radar.scan();
+        }
+        
+        //Initializes necessary variables to operate the algorithm        
+        
+        int c=0;
+        int highestValue=0;
+        int highestValueRow=0;
+        int highestValueCol=0;
+        
+        // Scans through all cells to find the most lit up cell
+        
+        for (int r=0;r<100;r++)
+        {
+            for (c=0;c<100;c++)
+            {
+                if (radar.getAccumulatedDetection(r,c)>highestValue)
+                {
+                    highestValueCol=c;
+                    highestValueRow=r;
+                    highestValue=radar.getAccumulatedDetection(r,c);
+                }
+            }
+        }
+
+        // Verifies that the cell found was the intended cell
+        
+        assertEquals(55,highestValueRow);
+        assertEquals(2,highestValueCol);
     }
 }
